@@ -1,5 +1,6 @@
 import { ThemeProvider } from '@/components/theme-provider';
 import { ThemeFavicon } from '@/components/theme-favicon';
+import { Toaster } from '@/components/ui/sonner';
 import '@/styles/global.css';
 
 interface RootLayoutProps {
@@ -24,6 +25,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
 				>
 					<ThemeFavicon />
 					{children}
+					<Toaster />
 				</ThemeProvider>
 			</body>
 		</html>

@@ -17,12 +17,22 @@ export async function middleware(req: NextRequest) {
 	const { pathname } = req.nextUrl;
 
 	if (!session) {
-		if (pathname.startsWith('/product')) {
+		if (pathname.startsWith('/product') || pathname.startsWith('/auth')) {
 			return res;
 		}
 
 		if (pathname === '/') {
 			return NextResponse.redirect(new URL('/product', req.url));
+		}
+	}
+
+	if (session) {
+		if (pathname.startsWith('/auth')) {
+			return res;
+		}
+
+		if (pathname === '/' || pathname.startsWith('/product') || pathname.startsWith('/pricing')) {
+			return NextResponse.redirect(new URL('/workspace', req.url));
 		}
 	}
 
