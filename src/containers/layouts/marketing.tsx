@@ -24,7 +24,7 @@ export default function LearningProductLayout({ children }: { children: React.Re
 	return (
 		<div className="flex flex-col min-h-screen">
 			{/* Header */}
-			<header className="px-24 py-6 sticky top-0">
+			<header className="px-24 pt-6 sticky top-0">
 				<Card className="flex flex-row justify-between px-8 bg-background/70 backdrop-blur-md">
 					<div className="flex">
 						<Link href="/product" passHref className="flex space-x-2 min-w-[25rem]">

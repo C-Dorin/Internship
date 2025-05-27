@@ -282,6 +282,16 @@ export type Database = {
 					}
 				];
 			};
+			decolari: {
+				Row: {
+					amanata: boolean | null;
+					anulata: boolean | null;
+					cod_cursa: string | null;
+					ora_decolare: string | null;
+					oras_destinatie: string | null;
+				};
+				Relationships: [];
+			};
 			locuri_disponibile: {
 				Row: {
 					cod_cursa: string | null;
@@ -373,6 +383,16 @@ export type Database = {
 					id_avion: number;
 					anulata: boolean;
 					amanata: boolean;
+				}[];
+			};
+			show_decolari: {
+				Args: Record<PropertyKey, never>;
+				Returns: {
+					cod_cursa: string;
+					oras_destinatie: string;
+					ora_decolare: string;
+					amanata: boolean;
+					anulata: boolean;
 				}[];
 			};
 			show_locuri_disponibile: {
