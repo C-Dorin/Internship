@@ -4,6 +4,7 @@ import * as React from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { PlaneLanding, PlaneTakeoff } from 'lucide-react';
 import { DecolariTable } from './components/table/decolariTable';
+import { AterizariTable } from './components/table/aterizariTable';
 
 export default function Product() {
 	return (
@@ -38,7 +39,9 @@ export default function Product() {
 					<TabsContent value="decolari">
 						<DecolariTable />
 					</TabsContent>
-					<TabsContent value="aterizari"></TabsContent>
+					<TabsContent value="aterizari">
+						<AterizariTable />
+					</TabsContent>
 				</Tabs>
 			</div>
 		</div>

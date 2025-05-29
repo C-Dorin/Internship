@@ -31,27 +31,27 @@ import {
 	TableHeader,
 	TableRow
 } from '@/components/ui/table';
-import { Decolari } from '@/types/product.type';
-import { useDecolariStore } from '@/lib/store/product.store';
+import { Aterizari } from '@/types/product.type';
+import { useAterizariStore } from '@/lib/store/product.store';
 import { useEffect, useMemo } from 'react';
 import { productService } from '@/lib/services/api/product.api';
 
-export function DecolariTable() {
-	const data = useDecolariStore((state) => state.decolari);
-	const setDecolari = useDecolariStore((state) => state.setDecolari);
+export function AterizariTable() {
+	const data = useAterizariStore((state) => state.aterizari);
+	const setAterizari = useAterizariStore((state) => state.setAterizari);
 
-	const decolariService = useMemo(() => productService, []);
+	const aterizariService = useMemo(() => productService, []);
 	useEffect(() => {
-		async function fetchAndStoreDecolari() {
+		async function fetchAndStoreAterizari() {
 			try {
-				const data = await decolariService.showDecolari();
-				setDecolari(data);
+				const data = await aterizariService.showAterizari();
+				setAterizari(data);
 			} catch (err: any) {
 				console.error('Error fetching pages: ', err);
 			}
 		}
-		fetchAndStoreDecolari();
-	}, [setDecolari, decolariService]);
+		fetchAndStoreAterizari();
+	}, [setAterizari, aterizariService]);
 
 	const [sorting, setSorting] = React.useState<SortingState>([]);
 	const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
@@ -183,7 +183,7 @@ export function DecolariTable() {
 	);
 }
 
-const columns: ColumnDef<Decolari>[] = [
+const columns: ColumnDef<Aterizari>[] = [
 	{
 		accessorKey: 'cod_cursa',
 		header: 'Cod cursă',
@@ -206,7 +206,7 @@ const columns: ColumnDef<Decolari>[] = [
 		cell: ({ row }) => <div className="pl-4.5">{row.getValue('oras_destinatie')}</div>
 	},
 	{
-		accessorKey: 'ora_decolare',
+		accessorKey: 'ora_aterizare',
 		header: ({ column }) => {
 			return (
 				<Button
@@ -214,13 +214,13 @@ const columns: ColumnDef<Decolari>[] = [
 					onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
 					className="space-x-2 capitalize"
 				>
-					<p>Ora de decolare</p>
+					<p>Ora de aterizare</p>
 					<ArrowUpDown />
 				</Button>
 			);
 		},
 		cell: ({ row }) => {
-			return <div className="font-medium pl-4.5">{row.getValue('ora_decolare')}</div>;
+			return <div className="font-medium pl-4.5">{row.getValue('ora_aterizare')}</div>;
 		}
 	},
 	{
