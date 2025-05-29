@@ -220,7 +220,13 @@ const columns: ColumnDef<Aterizari>[] = [
 			);
 		},
 		cell: ({ row }) => {
-			return <div className="font-medium pl-4.5">{row.getValue('ora_aterizare')}</div>;
+			const { ora_aterizare_time, ora_aterizare_date } = row.original;
+			return (
+				<div className="font-medium pr-18 flex justify-around">
+					<div>{ora_aterizare_time}</div>
+					<div>{ora_aterizare_date}</div>
+				</div>
+			);
 		}
 	},
 	{

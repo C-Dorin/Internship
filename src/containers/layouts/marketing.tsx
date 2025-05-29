@@ -24,7 +24,7 @@ export default function LearningProductLayout({ children }: { children: React.Re
 	return (
 		<div className="flex flex-col min-h-screen">
 			{/* Header */}
-			<header className="px-24 pt-6 sticky top-0">
+			<header className="px-24 pt-6 sticky top-0 z-20">
 				<Card className="flex flex-row justify-between px-8 bg-background/70 backdrop-blur-md">
 					<div className="flex">
 						<Link href="/product" passHref className="flex space-x-2 min-w-[25rem]">
@@ -53,10 +53,10 @@ export default function LearningProductLayout({ children }: { children: React.Re
 					</div>
 				</Card>
 			</header>
-			<main className="flex-grow flex pt-4 px-4 justify-center">{children}</main>
+			<main className="flex-grow flex pt-4 px-4 justify-center z-10">{children}</main>
 			{/* Footer */}
 			<footer className="flex justify-center bg-accent">
-				<div className="flex items-center space-x-1 p-16 text-sm font-medium">
+				<div className="flex items-center space-x-1 py-40 text-sm font-medium">
 					<Copyright size={16} />
 					<p>2025</p>
 					<p>Aeroport International Chisinau</p>

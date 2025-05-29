@@ -220,7 +220,13 @@ const columns: ColumnDef<Decolari>[] = [
 			);
 		},
 		cell: ({ row }) => {
-			return <div className="font-medium pl-4.5">{row.getValue('ora_decolare')}</div>;
+			const { ora_decolare_time, ora_decolare_date } = row.original;
+			return (
+				<div className="font-medium pr-18 flex justify-around">
+					<div>{ora_decolare_time}</div>
+					<div>{ora_decolare_date}</div>
+				</div>
+			);
 		}
 	},
 	{
