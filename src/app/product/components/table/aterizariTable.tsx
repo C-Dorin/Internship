@@ -222,8 +222,8 @@ const columns: ColumnDef<Aterizari>[] = [
 		cell: ({ row }) => {
 			const { ora_aterizare_time, ora_aterizare_date } = row.original;
 			return (
-				<div className="font-medium pr-18 flex justify-around">
-					<div>{ora_aterizare_time}</div>
+				<div className="pr-18 flex justify-around">
+					<div className="font-medium">{ora_aterizare_time}</div>
 					<div>{ora_aterizare_date}</div>
 				</div>
 			);

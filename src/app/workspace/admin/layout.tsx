@@ -1,11 +1,11 @@
 import LearningProductLayout from '@/containers/layouts/marketing';
 import { Toaster } from '@/components/ui/toaster';
 
-interface ProductLayoutProps {
+interface AdminLayoutProps {
 	children: React.ReactNode;
 }
 
-export default function ProductLayout({ children }: ProductLayoutProps) {
+export default function AdminLayout({ children }: AdminLayoutProps) {
 	return (
 		<LearningProductLayout>
 			{children}

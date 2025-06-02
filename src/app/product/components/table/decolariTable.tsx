@@ -222,8 +222,8 @@ const columns: ColumnDef<Decolari>[] = [
 		cell: ({ row }) => {
 			const { ora_decolare_time, ora_decolare_date } = row.original;
 			return (
-				<div className="font-medium pr-18 flex justify-around">
-					<div>{ora_decolare_time}</div>
+				<div className="pr-18 flex justify-around">
+					<div className="font-medium">{ora_decolare_time}</div>
 					<div>{ora_decolare_date}</div>
 				</div>
 			);

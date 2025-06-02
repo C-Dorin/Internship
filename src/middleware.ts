@@ -21,7 +21,7 @@ export async function middleware(req: NextRequest) {
 			return res;
 		}
 
-		if (pathname === '/') {
+		if (pathname === '/' || pathname === '/workspace') {
 			return NextResponse.redirect(new URL('/product', req.url));
 		}
 	}
@@ -31,7 +31,7 @@ export async function middleware(req: NextRequest) {
 			return res;
 		}
 
-		if (pathname === '/' || pathname.startsWith('/product') || pathname.startsWith('/pricing')) {
+		if (pathname === '/' || pathname.startsWith('/product')) {
 			return NextResponse.redirect(new URL('/workspace', req.url));
 		}
 	}

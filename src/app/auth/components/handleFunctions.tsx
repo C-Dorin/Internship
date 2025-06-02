@@ -11,22 +11,19 @@ import {
 	ResetPasswordDto
 } from '@/types/auth.type';
 import { useUserDataFromLocalStorage } from '@/lib/store/local-storage.util';
-import { toast } from '@/components/ui/use-toast';
+import { toast } from 'sonner';
 import { Check } from 'lucide-react';
 
 const handleError = (error: unknown) => {
 	const errorMessage = error instanceof Error ? error.message : 'An unknown error occurred';
-	toast({
-		description: errorMessage,
-		variant: 'destructive'
-	});
+	toast.error(errorMessage);
 };
 
 // Sign In Handler
 export const signInHandler: SubmitHandler<SignInDto> = async (signInData) => {
 	try {
 		const { message } = await authService.signIn(signInData);
-		toast({ description: message, variant: 'default' });
+		toast.success(message);
 	} catch (error: unknown) {
 		handleError(error);
 	}
@@ -36,15 +33,7 @@ export const signInHandler: SubmitHandler<SignInDto> = async (signInData) => {
 export const signUpHandler: SubmitHandler<SignUpDto> = async (signInData) => {
 	try {
 		const { message } = await authService.signUp(signInData);
-		toast({
-			description: (
-				<div className="flex items-center">
-					<Check className="mr-2 text-[hsl(var(--foreground))]" />
-					<span>{message}</span>
-				</div>
-			),
-			variant: 'default'
-		});
+		toast.success(message);
 	} catch (error: unknown) {
 		handleError(error);
 	}
@@ -57,7 +46,7 @@ export const useSignInWithOtpHandler = (): SubmitHandler<SignInWithOtpDto> => {
 	return async (signInWithOtpData): Promise<void> => {
 		try {
 			const { message } = await authService.signInWithOtp(signInWithOtpData);
-			toast({ description: message, variant: 'default' });
+			toast.success(message);
 			router.push('/auth/resetPassword?step=otp');
 		} catch (error: unknown) {
 			handleError(error);
@@ -83,7 +72,7 @@ export const useVerifyOtpHandler = (): SubmitHandler<VerifyOtpDto> => {
 	return async (verifyOTPData): Promise<void> => {
 		try {
 			const { message } = await authService.verifyOtp({ email, otpCode: verifyOTPData.otpCode });
-			toast({ description: message, variant: 'default' });
+			toast.success(message);
 			router.push('/auth/resetPassword?step=reset');
 		} catch (error: unknown) {
 			handleError(error);
@@ -100,7 +89,7 @@ export const useResendOtpHandler = () => {
 		try {
 			e.preventDefault();
 			const { message } = await authService.signInWithOtp({ email });
-			toast({ description: message, variant: 'default' });
+			toast.success(message);
 		} catch (error: unknown) {
 			handleError(error);
 		}
@@ -114,7 +103,7 @@ export const useResetPasswordHandler = (): SubmitHandler<ResetPasswordDto> => {
 	return async (passwordResetData): Promise<void> => {
 		try {
 			const { message } = await authService.resetPassword(passwordResetData);
-			toast({ description: message, variant: 'default' });
+			toast.success(message);
 			router.push('/workspace');
 		} catch (error: unknown) {
 			handleError(error);
