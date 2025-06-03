@@ -1,5 +1,5 @@
 import { Session } from '@supabase/supabase-js';
-import { createSupabaseClientApi } from '@/lib/supabase/client';
+import { createSupabaseClientApi } from '@/lib/supabase/server';
 import { mapUserData } from '@/lib/store/user.mapper';
 import { getUserFromSupabaseByEmail } from '@/lib/utils/user.utils';
 import {
@@ -35,8 +35,6 @@ export const signInUser = async ({ email, password }: SignInDto): Promise<Sessio
 		throw new Error(error.message || 'Failed to sign in');
 	}
 
-	await mapUserData(data.user);
-
 	return data.session;
 };
 
@@ -66,8 +64,6 @@ export const signUpUser = async ({
 	if (!data.user) {
 		throw new Error('User data is missing after sign-up');
 	}
-
-	await mapUserData(data.user);
 
 	return data.session;
 };

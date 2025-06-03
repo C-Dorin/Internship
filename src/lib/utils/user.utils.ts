@@ -1,37 +1,5 @@
-import {
-	createSupabaseClientAnonymous,
-	createSupabaseClientServiceRole
-} from '@/lib/supabase/client';
+import { createSupabaseClientServiceRole } from '@/lib/supabase/server';
 import { User } from '@/types/user.type';
-
-// Fetch the current user's details using the Supabase client
-export const getCurrentUser = async (): Promise<User | null> => {
-	const supabase = createSupabaseClientAnonymous;
-	const {
-		data: { user },
-		error
-	} = await supabase.auth.getUser();
-
-	if (error) {
-		console.error('Failed to fetch current user:', error.message);
-		throw new Error(error.message || 'Unable to fetch user details');
-	}
-
-	if (!user) {
-		console.error('User does not exist in getCurrentUser');
-		return null;
-	}
-
-	const { id, email, user_metadata } = user;
-	const mappedUser: User = {
-		id,
-		email: email || 'Unknown',
-		firstName: user_metadata?.firstName || 'Unknown',
-		lastName: user_metadata?.lastName || 'Unknown'
-	};
-
-	return mappedUser;
-};
 
 // Get the user data by email
 export const getUserFromSupabaseByEmail = async (email: string): Promise<User | undefined> => {

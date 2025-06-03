@@ -1,3 +1,4 @@
+import { persistUserFromSession } from '@/lib/utils/auth/userPersist.utils';
 import {
 	SignInDto,
 	SignUpDto,
@@ -5,6 +6,18 @@ import {
 	VerifyOtpDto,
 	ResetPasswordDto
 } from '@/types/auth.type';
+import { Session } from '@supabase/supabase-js';
+
+type SignInResponse = {
+	message: string;
+	session: Session | null;
+	redirect: string;
+};
+
+type SignUpResponse = {
+	message: string;
+	session: Session | null;
+};
 
 type ApiResponse<T = { message: string }> = T;
 
@@ -31,18 +44,27 @@ class AuthService {
 
 	// Sends a POST request to sign in the user
 	async signIn(payload: SignInDto): Promise<ApiResponse> {
-		return this.fetchApi('signIn', {
+		const data = await this.fetchApi<SignInResponse>('signIn', {
 			method: 'POST',
 			body: JSON.stringify(payload)
 		});
+
+		persistUserFromSession(data.session);
+
+		return data;
 	}
 
 	// Sends a POST request to sign up a new user
 	async signUp(payload: SignUpDto): Promise<ApiResponse> {
-		return this.fetchApi('signUp', {
+		const data = await this.fetchApi<SignUpResponse>('signUp', {
 			method: 'POST',
 			body: JSON.stringify(payload)
 		});
+
+		console.log(data);
+		persistUserFromSession(data.session);
+
+		return data;
 	}
 
 	// Sends a POST request to sign out the user

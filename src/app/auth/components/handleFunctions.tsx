@@ -10,9 +10,8 @@ import {
 	VerifyOtpDto,
 	ResetPasswordDto
 } from '@/types/auth.type';
-import { useUserDataFromLocalStorage } from '@/lib/store/local-storage.util';
+import { getUserFromLocalStorage } from '@/lib/store/local-storage.util';
 import { toast } from 'sonner';
-import { Check } from 'lucide-react';
 
 const handleError = (error: unknown) => {
 	const errorMessage = error instanceof Error ? error.message : 'An unknown error occurred';
@@ -66,7 +65,7 @@ export const signInWithGoogleHandler = async (): Promise<void> => {
 // OTP Verification Handler
 export const useVerifyOtpHandler = (): SubmitHandler<VerifyOtpDto> => {
 	const router = useRouter();
-	const userData = useUserDataFromLocalStorage();
+	const userData = getUserFromLocalStorage();
 	const email = userData?.email;
 
 	return async (verifyOTPData): Promise<void> => {
@@ -82,7 +81,7 @@ export const useVerifyOtpHandler = (): SubmitHandler<VerifyOtpDto> => {
 
 // Resend OTP Handler
 export const useResendOtpHandler = () => {
-	const userData = useUserDataFromLocalStorage();
+	const userData = getUserFromLocalStorage();
 	const email = userData?.email ?? '';
 
 	return async (e: React.MouseEvent<HTMLButtonElement>): Promise<void> => {

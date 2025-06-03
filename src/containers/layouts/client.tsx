@@ -18,6 +18,7 @@ import {
 import { Label } from '@/components/ui/label';
 import { authService } from '@/lib/services/api/auth.api';
 import { toast } from 'sonner';
+import { getUserFromLocalStorage } from '@/lib/store/local-storage.util';
 
 export default function LearningClientLayout({ children }: { children: React.ReactNode }) {
 	const handleSignOut = async (): Promise<void> => {
@@ -28,6 +29,11 @@ export default function LearningClientLayout({ children }: { children: React.Rea
 			toast.error(error.message);
 		}
 	};
+
+	const userData = getUserFromLocalStorage();
+	const firstName = userData?.firstName;
+	const lastName = userData?.lastName;
+	const avatar = userData?.avatar;
 
 	return (
 		<div className="flex flex-col min-h-screen">
@@ -49,14 +55,14 @@ export default function LearningClientLayout({ children }: { children: React.Rea
 					<div className="flex space-x-3">
 						<ModeToggle />
 						<div className="flex space-x-1.5">
-							<Label>Larda</Label>
-							<Label>Chislow</Label>
+							<Label>{firstName}</Label>
+							<Label>{lastName}</Label>
 							<DropdownMenu>
 								<DropdownMenuTrigger asChild>
 									<Button variant="ghost" className="h-8 w-8 p-0">
 										<span className="sr-only">Open menu</span>
 										<Avatar>
-											<AvatarImage src="{avatar}" alt="@avatar" />
+											<AvatarImage src={avatar} alt="@avatar" />
 											<AvatarFallback>CN</AvatarFallback>
 										</Avatar>
 									</Button>

@@ -1,28 +1,16 @@
-'use client';
+import type { User } from '@/types/user.type';
 
-import { useState, useEffect } from 'react';
-import { User } from '@/types/user.type';
+const USER_STORAGE_KEY = 'current_user';
 
-export const getUserDataFromLocalStorage = (): User | null => {
-	if (typeof window === 'undefined') return null;
-
-	try {
-		const storedUserData = localStorage.getItem('userData');
-		return storedUserData ? JSON.parse(storedUserData) : null;
-	} catch (error: unknown) {
-		console.error('Error parsing userData from localStorage:', error);
-		return null;
-	}
+export const saveUserToLocalStorage = (user: User) => {
+	localStorage.setItem(USER_STORAGE_KEY, JSON.stringify(user));
 };
 
-export const useUserDataFromLocalStorage = () => {
-	const [userData, setUserData] = useState<User | null>(getUserDataFromLocalStorage);
+export const getUserFromLocalStorage = (): User | null => {
+	const data = localStorage.getItem(USER_STORAGE_KEY);
+	return data ? JSON.parse(data) : null;
+};
 
-	useEffect(() => {
-		const handleStorageChange = () => setUserData(getUserDataFromLocalStorage());
-		window.addEventListener('storage', handleStorageChange);
-		return () => window.removeEventListener('storage', handleStorageChange);
-	}, []);
-
-	return userData;
+export const clearUserFromLocalStorage = () => {
+	localStorage.removeItem(USER_STORAGE_KEY);
 };
