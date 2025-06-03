@@ -1,4 +1,4 @@
-import LearningProductLayout from '@/containers/layouts/marketing';
+import LearningAdminLayout from '@/containers/layouts/admin';
 import { Toaster } from '@/components/ui/toaster';
 
 interface AdminLayoutProps {
@@ -7,9 +7,9 @@ interface AdminLayoutProps {
 
 export default function AdminLayout({ children }: AdminLayoutProps) {
 	return (
-		<LearningProductLayout>
+		<LearningAdminLayout>
 			{children}
 			<Toaster />
-		</LearningProductLayout>
+		</LearningAdminLayout>
 	);
 }

@@ -21,18 +21,27 @@ export async function middleware(req: NextRequest) {
 			return res;
 		}
 
-		if (pathname === '/' || pathname === '/workspace') {
+		if (
+			pathname === '/' ||
+			pathname === '/workspace/admin' ||
+			pathname === '/workspace/client' ||
+			pathname === '/workspace/customerSupport'
+		) {
 			return NextResponse.redirect(new URL('/product', req.url));
 		}
 	}
 
 	if (session) {
-		if (pathname.startsWith('/auth')) {
+		if (
+			pathname.startsWith('/workspace/admin') ||
+			pathname.startsWith('/workspace/client') ||
+			pathname.startsWith('/workspace/customerSupport')
+		) {
 			return res;
 		}
 
-		if (pathname === '/' || pathname.startsWith('/product')) {
-			return NextResponse.redirect(new URL('/workspace', req.url));
+		if (pathname === '/' || pathname === '/product' || pathname === '/workspace') {
+			return NextResponse.redirect(new URL('/workspace/client', req.url));
 		}
 	}
 

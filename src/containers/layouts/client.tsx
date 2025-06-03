@@ -19,7 +19,7 @@ import { Label } from '@/components/ui/label';
 import { authService } from '@/lib/services/api/auth.api';
 import { toast } from 'sonner';
 
-export default function LearningWorkspaceLayout({ children }: { children: React.ReactNode }) {
+export default function LearningClientLayout({ children }: { children: React.ReactNode }) {
 	const handleSignOut = async (): Promise<void> => {
 		try {
 			const { message } = await authService.signOut();
