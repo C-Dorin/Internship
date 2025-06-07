@@ -14,7 +14,7 @@ export const persistUserFromSession = (session: Session | null) => {
 		email: session.user.email ?? undefined,
 		firstName: metadata?.firstName ?? metadata?.full_name?.split(' ')[0] ?? undefined,
 		lastName: metadata?.lastName ?? metadata?.full_name?.split(' ')[1] ?? undefined,
-		avatar: metadata?.avatar_url ?? metadata?.picture ?? 'https://ui-avatars.com/api/?name=User'
+		avatar: metadata?.avatar_url ?? metadata?.picture ?? 'https://ui-avatars.com/api/?name=CD'
 	};
 
 	saveUserToLocalStorage(user);
