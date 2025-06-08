@@ -1,4 +1,8 @@
 export type OrarDestinatie = {
+	ora_decolare_time?: string;
+	ora_decolare_date?: string;
+	ora_aterizare_time?: string;
+	ora_aterizare_date?: string;
 	id_orar: number;
 	cod_cursa: string;
 	ziua_saptamanii: string;
@@ -17,6 +21,8 @@ export type LocuriDisponibilePerCursa = {
 };
 
 export type OrarDecolareAvion = {
+	ora_decolare_time?: string;
+	ora_decolare_date?: string;
 	id_orar: number;
 	cod_cursa: string;
 	ziua_saptamanii: string;

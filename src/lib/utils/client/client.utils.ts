@@ -69,13 +69,23 @@ export const getOrarDestinatie = async (oras: string): Promise<OrarDestinatie[]>
 		return [];
 	}
 
-	const formattedData =
+	const formattedData1 =
 		data?.map((item) => {
 			const { time, date } = formatOra(item.ora_aterizare);
 			return {
 				...item,
 				ora_aterizare_time: time,
 				ora_aterizare_date: date
+			};
+		}) ?? null;
+
+	const formattedData =
+		formattedData1?.map((item) => {
+			const { time, date } = formatOra(item.ora_decolare);
+			return {
+				...item,
+				ora_decolare_time: time,
+				ora_decolare_date: date
 			};
 		}) ?? null;
 
